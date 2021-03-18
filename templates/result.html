@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block title %}
+Result
+{% endblock %}
+
+{% block content %}
+        <div class = "row">
+            <div class = "col-3" style = "padding">
+                <div class = "card"> 
+                    <div class = "card-body">
+                        <div class = "row">
+                            <img class = "cart-img-top" src = "{{rank.link}}" alt = "Product Image" style="width: 50%">
+                            <div class = "container" style = "width: 40%">
+                                <h5 class = "card-title">Ranked Solo</h5>
+                                <h5 class = "card-brand">{{rank.tier}}  {{rank.rank}}</h5>
+                                <h5 class = "card-brand">{{rank.lp}} Points</h5>
+                                <h5 class = "card-brand">{{rank.wins}}W {{rank.losses}}L</h5>
+                                <h5 class = "card-brand">Winrate: {{rank.win_ratio}}%</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class = "card"> 
+                    <div class = "card-body">
+                        <div class = "row">
+                            <img class = "cart-img-top" src = "{{flex.link}}" alt = "Product Image" style="width: 50%">
+                            <div class = "container" style = "width: 40%">
+                                <h5 class = "card-title">Ranked Flex</h5>
+                                <h5 class = "card-brand">{{flex.tier}}  {{flex.rank}}</h5>
+                                <h5 class = "card-brand">{{flex.lp}} Points</h5>
+                                <h5 class = "card-brand">{{flex.wins}}W {{flex.losses}}L</h5>
+                                <h5 class = "card-brand">Win PCT: {{flex.win_ratio}}%</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% for champion in solo %}
+                <div class = "card"> 
+                    <div class = "card-body">
+                        <div class = "row"> 
+                            <img class = "cart-img-top" src = "{{champion.Img_link}}" alt = "Product Image" style="height: 50%; width: 50%; border-radius: 50%">
+                            <div class = "container" style = "width: 40%">
+                                <h5 class = "card-title">{{champion.Name}}</h5>
+                                <h5 class = "card-brand">{{champion.Num_played}} Played</h5>
+                                <h5 class = "card-brand">Winrate: {{champion.Winrate}}%</h5>
+                                <h5 class = "card-brand">KDA: {{champion.Kda}}</h5>
+                                <h5 class = "card-brand">Kills: {{champion.Kill_pg}}</h5>
+                                <h5 class = "card-brand">Deaths: {{champion.Death_pg}}</h5>
+                                <h5 class = "card-brand">Assists: {{champion.Assist_pg}}</h5>
+                                <h5 class = "card-brand">DPM: {{champion.Dpm}}/m</h5>
+                                <h5 class = "card-brand">GPM: {{champion.Gpm}}/m</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+
+            <div class = "col-8">
+            {% for match in matches %}
+            {% if match.Main.Win == "Victory"%}
+                <div class = "card text-white bg-primary mb-3">
+            {% elif match.Main.Win == "Remake"%}
+                <div class = "card text-white bg-secondary mb-3">
+            {% else %}
+                <div class="card text-white bg-danger mb-3">
+            {% endif %}
+                    <div class = "card-body">
+                        <div class = "row"> 
+                            <div class = "title-container", style = "height: 10%; width: 15%;">
+                                <h5 class = "text-center">{{match.Main.Queue_type}}</h5>
+                                <img title = "{{match.Main.Champion}}", class = "center" src = "{{match.Main.Champion_link}}" alt = "Product Image" style = "width: 75%; height:75%;border-radius: 50%;display: block;margin-left: auto;margin-right: auto;">
+                                <h5 class = "text-center">{{match.Main.Champion}}</h5>
+                                <h5 class = "text-center">{{match.Main.Min_played}}m {{match.Main.Sec_played}}s</h5>
+                                <h5 class = "text-center">{{match.Main.Win}}</h5>
+                            </div>
+                            <div class = "sums-container", style = "height:10%; width: 6%; margin-top: 5%;">
+                                <img class = "cart-img-top" src = "{{match.Main.Spell1}}" alt = "Product Image" style = "width: 100%; border-radius: 15%; height: 50%">
+                                <img class = "cart-img-top" src = "{{match.Main.Spell2}}" alt = "Product Image" style = "width: 100%; border-radius: 15%; height: 50%">
+                            </div>
+                            <div class = "perks-container", style = "height:10%; width: 15%; margin-top: 5%">
+                                <img class = "cart-img-top" src = "{{match.Main.Perk0}}" alt = "Product Image" style = "width: 30%; height: 100%"><img class = "cart-img-top" src = "{{match.Main.Perk1}}" alt = "Product Image" style = "width: 30%"><img class = "cart-img-top" src = "{{match.Main.Perk2}}" alt = "Product Image" style = "width: 30%">
+                                <img class = "cart-img-top" src = "{{match.Main.Perk3}}" alt = "Product Image" style = "width: 30%; height: 100%"><img class = "cart-img-top" src = "{{match.Main.Perk4}}" alt = "Product Image" style = "width: 30%"><img class = "cart-img-top" src = "{{match.Main.Perk5}}" alt = "Product Image" style = "width: 30%">
+                            </div>
+                            <div class = "stats-container", style = "height:10%; width: 15%; margin-top: 5%">
+                                <h5 class = "text-center">Level {{match.Main.Champ_level}}</h5>
+                                <h5 class = "text-center">{{match.Main.Kills}}/{{match.Main.Deaths}}/{{match.Main.Assists}}</h5>
+                                <h5 class = "text-center">KDA: {{match.Main.Kda}}</h5>
+                                <h5 class = "text-center">{{match.Main.LargestMultiKill}}</h5>
+                            </div>
+                            <div class = "items-container", style = "height:10%; width: 16%; margin-top: 5%">
+                                <img class = "cart-img-top" src = "{{match.Main.Item0}}" alt = "Product Image" style = "width: 20%"><img class = "cart-img-top" src = "{{match.Main.Item1}}" alt = "Product Image" style = "width: 20%"><img class = "cart-img-top" src = "{{match.Main.Item2}}" alt = "Product Image" style = "width: 20%"><img class = "cart-img-top" src = "{{match.Main.Item6}}" alt = "Product Image" style = "width: 20%">
+                                <img class = "cart-img-top" src = "{{match.Main.Item3}}" alt = "Product Image" style = "width: 20%"><img class = "cart-img-top" src = "{{match.Main.Item4}}" alt = "Product Image" style = "width: 20%"><img class = "cart-img-top" src = "{{match.Main.Item5}}" alt = "Product Image" style = "width: 20%">
+                                
+                            </div>
+                            <div class = "team-container", style= 'width: 14%;'>
+                                {% for Summoner in match.Team1.all %}
+                                <div class = "summoner-container", style = "display: flex">
+                                    <img class = "cart-img-top" src = "{{Summoner.Champion_link}}" alt = "Product Image" style = "width: 30%; display:inline">
+                                    <div class = "summoner-name" sytle = "display:inline">{{Summoner.Summoner_name}}</div>
+                                </div>
+                                {% endfor %}     
+                            </div>
+                            <div class = "team-container", style= 'width: 14%;'>
+                                {% for Summoner in match.Team2.all %}
+                                <div class = "summoner-container", style = "display: flex">
+                                    <img class = "cart-img-top" src = "{{Summoner.Champion_link}}" alt = "Product Image" style = "width: 30%; display:inline">
+                                    <div class = "summoner-name" sytle = "display:inline">{{Summoner.Summoner_name}}</div>
+                                </div>
+                                {% endfor %}             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+{% endblock content %}
