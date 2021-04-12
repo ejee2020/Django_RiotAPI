@@ -1,1 +1,1 @@
-# Django_RiotAPI
+op.gg like website made with Django. 
