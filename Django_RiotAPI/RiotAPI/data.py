@@ -1,4 +1,6 @@
 from riotwatcher import LolWatcher, ApiError
+from collections import defaultdict
+import requests
 '''
 This file contains all the necessary information to build up the Riot API application.
 Data structrue that contains it varies but they are mostly dictionaries. 
@@ -6,7 +8,7 @@ Data structrue that contains it varies but they are mostly dictionaries.
 # API_KEY and initializing the LoLWatcher instance w
 API_KEY = ''
 WATCHER = LolWatcher(API_KEY)
-
+MY_REGION = 'na1'
 # Getting league's latest info 
 latest_league_info = WATCHER.data_dragon.versions_for_region(MY_REGION)['n']['champion']
 

@@ -80,9 +80,9 @@ pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': 'riot-api.cjke3gda9ifw.us-west-1.rds.amazonaws.com',
-        'NAME': 'RIOTAPI',
-        'USER': 'admin',
+        'HOST': 'riot-api-django.cxwzfbewgtxk.us-east-2.rds.amazonaws.com',
+        'NAME': 'riot_api_django',
+        'USER': 'ewjee',
         'PASSWORD': 'Qesu823892-',
         'PORT': '3306',
     }
